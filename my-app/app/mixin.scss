@@ -1,0 +1,87 @@
+//: MIX-IN
+
+// DISPLAY FLEX
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-center {
+  @include flex;
+  justify-content: center;
+}
+@mixin flex-between {
+  @include flex;
+  justify-content: space-between;
+}
+@mixin flex-start {
+  @include flex;
+  justify-content: flex-start;
+}
+
+// MEDIA
+@mixin img-setting {
+  width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@mixin no-ghost {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-use-select: none;
+  user-select: none;
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
+}
+
+//* INTERACTIONS
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@mixin cursor {
+  cursor: pointer;
+}
+@mixin transition {
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+@mixin hover {
+  @include cursor;
+  @include transition;
+}
+
+//* STYLES
+@mixin shadow-box {
+  box-shadow: 0px 8px 12px rgb(0 0 0 / 11%);
+}
+@mixin article-title {
+  font-weight: 600;
+  font-size: 13px;
+  text-align: center;
+}
+@mixin article-subtitle {
+  font-weight: 200;
+  font-size: 17px;
+  text-align: center;
+}
+@mixin list-title {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.5px;
+}
+@mixin hover-effect {
+  transform: scale(1.1);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.5;
+}
