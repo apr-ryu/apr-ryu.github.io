@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "tsc && next build",
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "npm run build && touch out/.nojekyll && gh-pages -d out"
+    "deploy": "npm run build && touch out/.nojekyll && gh-pages -d out && gh-pages -d build"
   },
   "homepage": "https://apr-ryu.github.io/",
   "dependencies": {
