@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "homepage": "https://apr-ryu.github.io/",
   "dependencies": {
     "gh-pages": "^6.3.0",
     "next": "15.2.4",
