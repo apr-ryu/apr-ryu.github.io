@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -15,6 +15,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   //   const { state } = useCartContext();
+  const [toggle, setToggle] = useState<boolean>(false);
+
+  useEffect(() => {
+    setToggle(false);
+  }, [pathname]);
 
   return (
     <>
@@ -27,8 +32,23 @@ export default function Navbar() {
           <div>
             <Link href={"/shop/living"}>Living</Link>
           </div>
-          <div>
-            <FiMenu />
+          <div className={`${toggle ? "active" : "inactive"}`}>
+            <FiMenu
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            />
+            <div id="nav-mb">
+              <div>
+                <SearchBar />
+              </div>
+              <div>
+                <Link href={"/shop/kitchen&dining"}>Kitchen & Dining</Link>
+              </div>
+              <div>
+                <Link href={"/shop/living"}>Living</Link>
+              </div>
+            </div>
           </div>
         </div>
         <Link href={"/"}>

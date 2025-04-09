@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "./mixin.scss";
+@use "tailwindcss";
+@use "./mixin.scss" as *;
 
 :root {
   --background: #ffffff;
@@ -69,12 +69,45 @@ nav {
           display: none;
         }
       }
-      svg {
+      > div:last-child {
         display: none;
         @media all and (max-width: 1200px) {
           display: block;
-          font-size: 14px;
+        }
+        svg {
+          @include cursor;
           margin-left: 20px;
+          font-size: 14px;
+        }
+        #nav-mb {
+          max-width: 400px;
+          width: 100%;
+          height: 100vh;
+          position: fixed;
+          top: 55px;
+          left: -400px;
+          background: rgba(255, 255, 255, 0.95);
+          flex-direction: column;
+          @include flex-start;
+          @include shadow-box;
+          @include transition;
+          > div {
+            width: 100%;
+            padding: 15px 20px;
+            @include flex-between;
+            input {
+              border-bottom: 1px solid rgb(206, 206, 206);
+              background-color: transparent;
+              padding: 3px 0px;
+              font-size: 13px;
+              width: 100%;
+            }
+          }
+        }
+        &.active {
+          > #nav-mb {
+            left: 0;
+          }
         }
       }
     }
@@ -225,9 +258,6 @@ footer {
   @include flex-between;
   align-items: flex-start;
   padding: 40px;
-  @media all and (max-width: 1200px) {
-    padding: 40px 10px;
-  }
   > div {
     width: 33.3%;
     padding: 30px;
@@ -245,6 +275,15 @@ footer {
       word-wrap: break-word;
       margin-bottom: 5px;
       white-space: pre-line;
+    }
+  }
+  @media all and (max-width: 1200px) {
+    padding: 40px 10px;
+  }
+  @media all and (max-width: 600px) {
+    flex-direction: column;
+    > div {
+      width: 100%;
     }
   }
 }
