@@ -64,13 +64,16 @@
 }
 @mixin article-title {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 1rem;
   text-align: center;
 }
 @mixin article-subtitle {
   font-weight: 200;
-  font-size: 17px;
+  font-size: 1.31rem;
   text-align: center;
+  @media all and (max-width: 600px) {
+    font-size: 1.1rem;
+  }
 }
 @mixin list-title {
   font-size: 12px;

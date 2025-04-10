@@ -15,6 +15,7 @@ export default function footer() {
           ) : item.subtitle ? (
             item.subtitle.map((subItem, subIndex) => (
               <Link
+                rel="preload"
                 className="footer-sub-items"
                 key={subIndex}
                 href={

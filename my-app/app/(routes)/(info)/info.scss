@@ -1,0 +1,59 @@
+@import "../..//mixin.scss";
+
+.info-page {
+  padding: 20px;
+  min-height: 70vh;
+
+  .article-contents {
+    width: 1000px;
+    margin: 0 auto;
+    @media all and (min-width: 601px) and (max-width: 1200px) {
+      width: calc(100% - 80px);
+    }
+    @media all and (max-width: 600px) {
+      width: calc(100%);
+    }
+    .img-wrapper {
+      width: 100%;
+      margin: 80px auto;
+      @media all and (max-width: 600px) {
+        margin: 30px 0;
+      }
+    }
+    u {
+      font-size: 1.15rem;
+      @media all and (max-width: 600px) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // CONTACT
+  &#contact-page {
+    min-height: calc(100vh - 55px);
+    .article-contents {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      > p.article-contents-paragraph {
+        text-align: center;
+      }
+      iframe {
+        width: 100%;
+        margin: 50px;
+      }
+    }
+  }
+
+  // FAQ
+  &#faq-page,
+  &#shipping-return-page {
+    margin-bottom: 120px;
+    .accordion-category {
+      @include article-subtitle;
+      text-align: left;
+      padding: 10px 2rem;
+      margin-top: 50px;
+    }
+  }
+}

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
+import { Providers } from "./providers";
 
 //COMPONENTS
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 
 import "./globals.scss";
+import "./globals.css";
 
 const lexend = Lexend({
   weight: ["200", "300", "400", "500", "700"],
@@ -27,9 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lexend.variable} antialiased`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
