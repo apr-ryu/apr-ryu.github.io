@@ -1,12 +1,12 @@
+import Paragraph from "@/app/components/paragraph";
+
 //STYLE
 import "../info.scss";
 
 export default function AccessibilityPage() {
   return (
     <div className="info-page">
-      <p className="article-title">INFO</p>
-      <p className="article-subtitle">ACCESSIBILITY</p>
-      <div className="article-contents">
+      <Paragraph title="INFO" subtitle="ACCESSIBILITY">
         <p className="article-contents-paragraph">
           Mogutable cares about the accessibility of our website. <br />
           <br /> Have difficulty viewing or navigating the website? <br />
@@ -21,7 +21,7 @@ export default function AccessibilityPage() {
           consideration in our efforts to provide an inclusive experience for
           all of our customers.
         </p>
-      </div>
+      </Paragraph>
     </div>
   );
 }
