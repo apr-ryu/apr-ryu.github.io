@@ -12,7 +12,7 @@ export type CardData = {
   title: string;
   subtitle?: number | string;
   preview?: string;
-  img: StaticImageData[];
+  img: StaticImageData[] | string[];
 };
 
 type MyProps = {
