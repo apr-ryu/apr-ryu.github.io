@@ -1,4 +1,5 @@
 // COMPONENTS
+import axios from "axios";
 import Swiper from "./components/swiper";
 import SectionWithCards from "./components/section-with-cards";
 
@@ -58,6 +59,23 @@ export default async function Home() {
     },
   ];
 
+  axios.interceptors.response.use(function (response) {
+    response.data = mockData;
+    return response;
+  });
+
+  await axios
+    .get("https://catfact.ninja/fact")
+    .then(async (res) => {
+      console.log(res.data);
+    })
+    .catch(async (error) => {
+      console.log(error);
+    });
+
+  const res = await axios.get("https://catfact.ninja/fact");
+  const result = res.data;
+
   return (
     <div id="page-home">
       <div className="full-size-swiper">
@@ -66,7 +84,7 @@ export default async function Home() {
           classname="product"
           title="FEATURED PRODUCTS"
           subtitle="NEW IN"
-          cardList={mockData}
+          cardList={result}
           grid={4}
           maxDisplay={4}
         />
