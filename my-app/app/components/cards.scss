@@ -84,9 +84,11 @@
       font-weight: 500;
       margin-bottom: 0.2rem;
       letter-spacing: 0.5px;
-      max-height: 17px;
       width: 100%;
-      @include ellipsis;
+      &:not(.preview) {
+        max-height: 17px;
+        @include ellipsis;
+      }
       &:has(~ .preview) {
         width: 100%;
         text-align: left;
