@@ -1,4 +1,4 @@
-type ProductData = {
+export type ProductData = {
   id: string;
   collection: string;
   title: string;
