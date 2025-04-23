@@ -34,7 +34,9 @@ export default function SearchBar() {
         placeholder={placeholder}
         autoComplete="off"
         onKeyDown={(e) => {
-          e.key === "Enter" && handleSearch();
+          if (e.key === "Enter") {
+            handleSearch();
+          }
         }}
       />
       <div onClick={handleSearch}>
