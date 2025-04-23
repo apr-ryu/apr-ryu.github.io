@@ -1,11 +1,6 @@
-export type ArticleData = {
-  id: number;
-  title: string;
-  preview: string;
-  img: string[];
-};
+import { Article } from "../interfaces";
 
-export const articleList: ArticleData[] = [
+export const articleList: Article[] = [
   {
     id: 1,
     title: "RECIPE: CLAYPOT SESAME OIL CHICKEN RICE",

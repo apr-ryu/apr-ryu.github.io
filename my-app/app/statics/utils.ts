@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const interceptFetchData = async <T>(
-  interceptedResponse: T[]
-): Promise<T[]> => {
+  interceptedResponse: T
+): Promise<T> => {
   axios.interceptors.response.use(function (response) {
     response.data = interceptedResponse;
     return response;

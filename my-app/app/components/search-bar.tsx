@@ -8,23 +8,15 @@ export default function SearchBar() {
   const router = useRouter();
   const pathname = usePathname();
   const searchKeyword = useRef<HTMLInputElement>(null);
-
   const [placeholder, setPlaceholder] = useState<string>("Search");
 
   const handleSearch = () => {
-    if (
-      !searchKeyword ||
-      searchKeyword.current!.value === "" ||
-      searchKeyword.current!.value.trim().length === 0
-    ) {
+    if (!searchKeyword || searchKeyword.current!.value.trim().length === 0) {
+      searchKeyword.current!.value = "";
       setPlaceholder("Please enter the keyword");
     } else {
       router.push(`/search?keyword=${searchKeyword.current?.value}`);
     }
-  };
-
-  const handleChange = (): void => {
-    setPlaceholder(searchKeyword.current!.value);
   };
 
   useEffect(() => {
@@ -41,10 +33,9 @@ export default function SearchBar() {
         ref={searchKeyword}
         placeholder={placeholder}
         autoComplete="off"
-        onChange={handleChange}
-        // onKeyDown={(e) => {
-        //   e.key === "Enter" && handleSearch();
-        // }}
+        onKeyDown={(e) => {
+          e.key === "Enter" && handleSearch();
+        }}
       />
       <div onClick={handleSearch}>
         <FiSearch />

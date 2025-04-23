@@ -4,15 +4,16 @@ import SectionWithCards from "./components/section-with-cards";
 
 // STATICS
 import swiperList from "./statics/constants/swiperList";
-import { productList, ProductData } from "./statics/constants/productList";
-import { articleList, ArticleData } from "./statics/constants/articleList";
+import { productList } from "./statics/constants/productList";
+import { articleList } from "./statics/constants/articleList";
+import { Product, Article } from "./statics/interfaces";
 
 // UTILITIES
 import { interceptFetchData } from "./statics/utils";
 
 export default async function Home() {
-  const products = await interceptFetchData<ProductData>(productList);
-  const articles = await interceptFetchData<ArticleData>(articleList);
+  const products = await interceptFetchData<Product[]>(productList);
+  const articles = await interceptFetchData<Article[]>(articleList);
 
   return (
     <div id="page-home">

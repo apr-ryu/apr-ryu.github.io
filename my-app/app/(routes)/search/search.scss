@@ -1,0 +1,12 @@
+//? Page("/search") Style Sheet
+
+@import "../../mixin.scss";
+
+#search {
+  overflow: auto;
+  min-height: calc(100vh - 330px);
+  height: max-content;
+  .card-wrapper {
+    margin-bottom: 100px;
+  }
+}

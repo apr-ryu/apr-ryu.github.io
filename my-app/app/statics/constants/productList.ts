@@ -1,15 +1,6 @@
-export type ProductData = {
-  id: string;
-  collection: string;
-  title: string;
-  subtitle: number;
-  img: string[];
-  description: string;
-  specs: string;
-  note?: string[];
-};
+import { Product } from "../interfaces";
 
-export const productList: ProductData[] = [
+export const productList: Product[] = [
   {
     id: "wine-glass-in-smoke",
     collection: "kitchen&dining",
