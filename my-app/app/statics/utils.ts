@@ -11,6 +11,7 @@ export const interceptFetchData = async <T>(
 };
 
 const fetchData = async <T>(url: string): Promise<T> => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const response = await axios.get(url);
   const data = response.data;
   return data;

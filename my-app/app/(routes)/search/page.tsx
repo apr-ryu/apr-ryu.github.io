@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 // COMPONENTS
@@ -47,14 +47,16 @@ export default function SearchPage() {
 
   return (
     <div id="search">
-      <SectionWithCards
-        classname="product"
-        title="SEARCH RESULT"
-        subtitle={search ? search : ""}
-        cardList={searchResults ? searchResults : []}
-        noResult={searchResults?.length === 0}
-        grid={4}
-      />
+      <Suspense>
+        <SectionWithCards
+          classname="product"
+          title="SEARCH RESULT"
+          subtitle={search ? search : ""}
+          cardList={searchResults ? searchResults : []}
+          noResult={searchResults?.length === 0}
+          grid={4}
+        />
+      </Suspense>
     </div>
   );
 }
