@@ -1,0 +1,83 @@
+//? Page("/product/[name]") Style Sheet
+
+@import "../../../mixin.scss";
+
+#product-detail {
+  width: 100%;
+  font-size: 1.1rem;
+  min-height: 100vh;
+  .bold {
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    margin-bottom: 3px;
+  }
+  .scroll-wrapper {
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+    }
+    @include flex-between;
+    align-items: flex-start;
+    .scroll-box {
+      width: 50%;
+      height: 100%;
+      padding-top: 120px;
+      &.left {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        margin-right: 20px;
+        height: calc(100vh - 55px);
+        position: sticky;
+        top: 55px;
+        left: 0px;
+        .description-wrapper {
+          width: 70%;
+          .product-description {
+            margin: 50px 0;
+            text-align: justify;
+            white-space: pre-line;
+          }
+          .product-spec {
+            margin-bottom: 20px;
+          }
+          .count-wrapper {
+            @include no-ghost;
+            @include flex-start;
+            margin-top: 50px;
+            > div {
+              border: 1px solid rgb(209, 209, 209);
+              width: 35px;
+              height: 35px;
+              @include flex-center;
+              @include hover;
+            }
+            > p {
+              margin: 0 20px;
+              width: 30px;
+              text-align: center;
+            }
+          }
+          .button-wrapper {
+            margin-top: 10px;
+            @include flex-start;
+          }
+        }
+      }
+      &.right {
+        scrollbar-width: none;
+        .img-wrapper {
+          overflow: hidden;
+          width: 70%;
+          position: relative;
+          margin-left: 20px;
+          margin-bottom: 50px;
+          &::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+          }
+        }
+      }
+    }
+  }
+}
