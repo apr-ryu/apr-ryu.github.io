@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
@@ -80,7 +80,9 @@ export default function ProductDetailsPage() {
 
   return (
     <div id="product-detail">
-      <DetailsWrapper />
+      <Suspense>
+        <DetailsWrapper />
+      </Suspense>
     </div>
   );
 }
