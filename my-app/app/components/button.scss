@@ -1,0 +1,29 @@
+//? Button Component Style Sheet
+@import "../mixin.scss";
+
+.button-wrapper {
+  * {
+    font-size: 1rem;
+  }
+  @include flex-center;
+  .button {
+    padding: 15px 20px;
+    @include hover;
+    &.light {
+      border: 1px solid #000;
+      &:hover {
+        color: #fff;
+        background-color: #000;
+      }
+    }
+    &.dark {
+      color: #fff;
+      background-color: #000;
+      border: 1px solid #000;
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+}

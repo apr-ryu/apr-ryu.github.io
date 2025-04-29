@@ -4,6 +4,9 @@ import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
+// COMPONENTS
+import Button from "@/app/components/button";
+
 // STATICS
 import { Product } from "@/app/statics/interfaces";
 import { productList } from "@/app/statics/constants/productList";
@@ -15,6 +18,7 @@ import "./product-details.scss";
 export default function ProductDetailsPage() {
   const DetailsWrapper = () => {
     const [productDetails, setProductDetails] = useState<Product | null>(null);
+    const [count, setCount] = useState<number>(1);
     const searchParams = useSearchParams();
     const productID = searchParams.get("id");
 
@@ -30,11 +34,20 @@ export default function ProductDetailsPage() {
       setProductDetails(productDetails);
     }, []);
 
+    const handleOnclick = (action: string) => {
+      if (action === "add") {
+        setCount(count + 1);
+      } else if (action === "subtract" && count > 1) {
+        setCount(count - 1);
+      }
+    };
+
     useEffect(() => {
       if (productID) {
         fetchProductDetails();
       }
     }, [productID]);
+
     return (
       <>
         {productDetails && (
@@ -56,6 +69,26 @@ export default function ProductDetailsPage() {
                       • {note}
                     </p>
                   ))}
+                <div className="count-wrapper">
+                  <div
+                    onClick={() => {
+                      handleOnclick("subtract");
+                    }}
+                  >
+                    -
+                  </div>
+                  <p>{count}</p>
+                  <div
+                    onClick={() => {
+                      handleOnclick("add");
+                    }}
+                  >
+                    +
+                  </div>
+                </div>
+                <Button color="dark" handle={() => console.log("clicked")}>
+                  ADD TO CART
+                </Button>
               </div>
             </div>
             <div className="right scroll-box">
