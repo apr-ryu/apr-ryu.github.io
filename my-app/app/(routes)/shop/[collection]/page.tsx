@@ -11,6 +11,9 @@ import { productList } from "@/app/statics/constants/productList";
 // STYLE
 import "../shop.scss";
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 type MyProps = {
   params: Promise<{ collection: string }>;
 };
