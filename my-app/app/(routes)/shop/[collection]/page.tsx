@@ -22,13 +22,12 @@ export async function generateStaticParams() {
   return [
     { collection: "living" },
     { collection: "kitchen&dining" },
-    { collection: "all-product" },
+    { collection: "all-products" },
   ];
 }
 
 export default async function ShopPage({ params }: MyProps) {
   const { collection } = await params;
-
   const response = await interceptFetchData<Product[]>(productList);
 
   return (
