@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-
 // COMPONENTS
 import Swiper from "./components/swiper";
 import Button from "./components/button";
@@ -13,11 +11,6 @@ import { Product, Article } from "./statics/interfaces";
 
 // UTILITIES
 import { interceptFetchData } from "./statics/utils";
-
-const viewAllProducts = async () => {
-  "use server";
-  redirect("/shop/all-products");
-};
 
 export default async function Home() {
   const products = await interceptFetchData<Product[]>(productList);
@@ -36,7 +29,7 @@ export default async function Home() {
         grid={4}
         maxDisplay={4}
       />
-      <Button color={"light"} handle={viewAllProducts}>
+      <Button color={"light"} url={"shop/all-products"}>
         VIEW ALL PRODUCTS
       </Button>
       <SectionWithCards
