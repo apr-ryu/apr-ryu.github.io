@@ -1,0 +1,54 @@
+@import "../..//mixin.scss";
+
+.account-page {
+  height: calc(100vh - 55px);
+  @include flex-center;
+  .login-wrapper {
+    @include flex-center;
+    flex-direction: column;
+    .article-subtitle {
+      padding: 40px 0 5px;
+      margin: 0;
+    }
+    .list-title {
+      padding: 0;
+      margin-bottom: 10px;
+    }
+    .login-box {
+      border-radius: 20px;
+      width: 450px;
+      height: 350px;
+
+      .input-item {
+        width: 100%;
+        &.email-input {
+          button {
+            padding: 6px 9px;
+          }
+        }
+        > div {
+          padding: 12px;
+          height: 55px;
+          margin-bottom: 8px;
+          .inner-wrapper {
+            width: 100%;
+          }
+          *,
+          input {
+            font-size: 1rem !important;
+          }
+        }
+      }
+      .button-wrapper {
+        .button {
+          width: 100%;
+          border-radius: 12px;
+          text-align: center;
+          border-width: 2px;
+          padding: 16.5px 20px;
+          @include list-title;
+        }
+      }
+    }
+  }
+}
