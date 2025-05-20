@@ -1,18 +1,17 @@
 "use client";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useReducer,
-} from "react";
+import { createContext, useState, ReactNode } from "react";
+export const april = createContext<{
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+}>({ theme: "april", setTheme: () => {} });
 
-export default function ExContext() {
-  const example = createContext<null | string>("null");
-  const [theme, setTheme] = useState("light");
+export default function ExContext({ children }: { children: ReactNode }) {
+  const [theme, setTheme] = useState("sd");
+
   return (
-    <example.Provider value={theme}>
-      <div>exContext</div>;
-    </example.Provider>
+    <april.Provider value={{ theme, setTheme }}>{children};</april.Provider>
   );
 }
+// export const useAprilContext = () => {
+//   return useContext(april);
+// };
