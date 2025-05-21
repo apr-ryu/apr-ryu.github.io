@@ -12,7 +12,7 @@ export default function CartProvider({ children }: { children: ReactNode }) {
 
   return (
     <cartContext.Provider value={{ cart, setCart }}>
-      {children};
+      {children}
     </cartContext.Provider>
   );
 }
