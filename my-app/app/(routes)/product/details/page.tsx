@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense, useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 // COMPONENTS
@@ -18,7 +18,9 @@ import "./product-details.scss";
 
 export default function ProductDetailsPage() {
   const DetailsWrapper = () => {
-    const [productDetails, setProductDetails] = useState<Product | null>(null);
+    const [productDetails, setProductDetails] = useState<
+      Product | null | undefined
+    >(null);
     const [count, setCount] = useState<number>(1);
     const { cart, setCart } = useCartContext();
     const searchParams = useSearchParams();
@@ -28,12 +30,16 @@ export default function ProductDetailsPage() {
       const response = await interceptFetchData<Product[]>(productList);
       let productDetails: Product | null = null;
       for (let index = 0; index < response.length; index++) {
-        if (response[index].id.includes(productID!)) {
+        if (response[index].id === productID) {
           productDetails = response[index];
           break;
         }
       }
-      setProductDetails(productDetails);
+      if (productDetails === null) {
+        setProductDetails(undefined);
+      } else {
+        setProductDetails(productDetails);
+      }
     }, []);
 
     const handleOnclick = (action: string) => {
@@ -52,6 +58,7 @@ export default function ProductDetailsPage() {
 
     return (
       <>
+        {productDetails === undefined && notFound()}
         {productDetails && (
           <div className="scroll-wrapper">
             <div className="left scroll-box">
