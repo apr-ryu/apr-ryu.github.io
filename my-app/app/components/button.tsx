@@ -1,7 +1,7 @@
 "use client";
 import { redirect } from "next/navigation";
 
-//STYLE
+// STYLES
 import "./button.scss";
 
 type MyProps = {

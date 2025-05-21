@@ -11,7 +11,7 @@ import { Article } from "@/app/statics/interfaces";
 import { articleList } from "@/app/statics/constants/articleList";
 import { interceptFetchData } from "@/app/statics/utils";
 
-//STYLE
+// STYLES
 import "../../(info)/info.scss";
 
 export default function BlogPage() {

@@ -3,10 +3,11 @@ import { Lexend } from "next/font/google";
 import { Providers } from "./providers";
 import CartProvider from "./statics/constants/cartContext";
 
-//COMPONENTS
+// COMPONENTS
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 
+// STYLES
 import "./globals.scss";
 import "./globals.css";
 
