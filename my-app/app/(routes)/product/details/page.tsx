@@ -11,6 +11,7 @@ import Button from "@/app/components/button";
 import { Product } from "@/app/statics/interfaces";
 import { productList } from "@/app/statics/constants/productList";
 import { interceptFetchData } from "@/app/statics/utils";
+import { useCartContext } from "@/app/statics/constants/cartContext";
 
 // STYLES
 import "./product-details.scss";
@@ -19,6 +20,7 @@ export default function ProductDetailsPage() {
   const DetailsWrapper = () => {
     const [productDetails, setProductDetails] = useState<Product | null>(null);
     const [count, setCount] = useState<number>(1);
+    const { cart, setCart } = useCartContext();
     const searchParams = useSearchParams();
     const productID = searchParams.get("id");
 
@@ -86,7 +88,7 @@ export default function ProductDetailsPage() {
                     +
                   </div>
                 </div>
-                <Button color="dark" handle={() => console.log("clicked")}>
+                <Button color="dark" handle={() => setCart(cart + count)}>
                   ADD TO CART
                 </Button>
               </div>

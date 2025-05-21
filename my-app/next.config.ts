@@ -5,10 +5,6 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   reactStrictMode: false,
   // devIndicators: false,
-  compilerOptions: {
-    esModuleInterop: true,
-    // ... other options
-  },
 };
 
 export default nextConfig;

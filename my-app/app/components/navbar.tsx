@@ -9,12 +9,12 @@ import SearchBar from "./search-bar";
 
 // ICON
 import { FiUser, FiShoppingCart, FiMenu } from "react-icons/fi";
-// import { useCartContext } from "../statics/constants/cartContext";
+import { useCartContext } from "../statics/constants/cartContext";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  //   const { state } = useCartContext();
+  const { cart } = useCartContext();
   const [toggle, setToggle] = useState<boolean>(false);
 
   useEffect(() => {
@@ -59,6 +59,7 @@ export default function Navbar() {
           <div onClick={() => router.push(`/cart`)}>
             <FiShoppingCart />
             {/* {state.totalQuantity} */}
+            {cart}
           </div>
           <div onClick={() => router.push(`/account/login`)}>
             <FiUser />
