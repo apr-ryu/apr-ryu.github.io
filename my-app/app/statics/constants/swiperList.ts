@@ -5,9 +5,9 @@ import img3 from "@/public/images/banner3.jpg";
 
 export type SwiperData = {
   name: string;
-  img: StaticImageData;
-  slideTitle: string;
-  slideText: string;
+  img: StaticImageData | string;
+  slideTitle?: string;
+  slideText?: string;
 };
 
 const SwiperList: SwiperData[] = [

@@ -13,7 +13,13 @@ import "swiper/css/pagination";
 // MODULES
 import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
 
-export default function swiper({ swiperList }: { swiperList: SwiperData[] }) {
+export default function swiper({
+  swiperList,
+  fill,
+}: {
+  swiperList: SwiperData[];
+  fill?: boolean;
+}) {
   return (
     <>
       <Swiper
@@ -33,7 +39,13 @@ export default function swiper({ swiperList }: { swiperList: SwiperData[] }) {
       >
         {swiperList.map((item, index) => (
           <SwiperSlide key={index}>
-            <Image src={item.img} alt={item.name} quality={100} priority />
+            <Image
+              src={item.img}
+              alt={item.name}
+              quality={100}
+              priority
+              fill={fill}
+            />
             <div className="slide-text-wrapper">
               {item.slideTitle && (
                 <div className="slide-title">{item.slideTitle}</div>

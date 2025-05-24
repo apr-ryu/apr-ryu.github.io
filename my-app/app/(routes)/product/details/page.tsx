@@ -6,6 +6,8 @@ import Image from "next/image";
 
 // COMPONENTS
 import Button from "@/app/components/button";
+import Swiper from "@/app/components/swiper";
+import { SwiperData } from "@/app/statics/constants/swiperList";
 
 // STATICS
 import { Product } from "@/app/statics/interfaces";
@@ -40,6 +42,17 @@ export default function ProductDetailsPage() {
       } else {
         setProductDetails(productDetails);
       }
+    }, []);
+
+    const fetchSwiperList = useCallback((imageList: string[]) => {
+      let swiperList: SwiperData[] = [];
+      for (let index = 0; index < imageList.length; index++) {
+        swiperList = [
+          ...swiperList,
+          { name: `product-img-${index}`, img: imageList[index] },
+        ];
+      }
+      return swiperList;
     }, []);
 
     const handleOnclick = (action: string) => {
@@ -113,6 +126,9 @@ export default function ProductDetailsPage() {
                   />
                 </div>
               ))}
+            </div>
+            <div className="mb-size-swiper">
+              <Swiper swiperList={fetchSwiperList(productDetails.img)} fill />
             </div>
           </div>
         )}
