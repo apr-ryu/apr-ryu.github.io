@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { Input } from "@heroui/react";
 import Button from "@/app/components/button";
+
+// STYLES
 import "../account.scss";
 
 export default function LoginPage() {

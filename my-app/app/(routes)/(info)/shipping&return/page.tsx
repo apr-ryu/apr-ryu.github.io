@@ -2,7 +2,7 @@ import Paragraph from "@/app/components/paragraph";
 import AccordionBox from "@/app/components/accordion";
 import { AccordianItem } from "@/app/components/accordion";
 
-//STYLE
+// STYLES
 import "../info.scss";
 
 export default function ShippingAndReturnPage() {

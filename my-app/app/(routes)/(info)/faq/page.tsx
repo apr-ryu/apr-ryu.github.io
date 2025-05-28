@@ -2,7 +2,7 @@ import Paragraph from "@/app/components/paragraph";
 import AccordionBox from "@/app/components/accordion";
 import { AccordianItem } from "@/app/components/accordion";
 
-//STYLE
+// STYLES
 import "../info.scss";
 
 export default function FaqPage() {
@@ -40,7 +40,6 @@ export default function FaqPage() {
       body: 'Yes! You may pick up your order at our shop in 130 Grand St in Williamsburg, Brooklyn. Please select "Pick Up" when you check out, and we will inform you when your order is ready for picking up.',
     },
   ];
-
   const productData: AccordianItem = [
     {
       title: "Can I return my product?",

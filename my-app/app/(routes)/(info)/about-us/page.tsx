@@ -2,7 +2,7 @@ import Image from "next/image";
 import storeImg from "@/public/images/about-us.jpg";
 import Paragraph from "@/app/components/paragraph";
 
-//STYLE
+// STYLES
 import "../info.scss";
 
 export default function AboutUsPage() {
