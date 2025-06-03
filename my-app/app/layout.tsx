@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import { Providers } from "./providers";
-import CartProvider from "./statics/constants/cartContext";
+import { CartProvider } from "./statics/constants/cartContext";
 
 // COMPONENTS
 import Navbar from "./components/navbar";

@@ -14,7 +14,7 @@ import { useCartContext } from "../statics/constants/cartContext";
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { cart } = useCartContext();
+  const { state } = useCartContext();
   const [toggle, setToggle] = useState<boolean>(false);
 
   useEffect(() => {
@@ -58,8 +58,7 @@ export default function Navbar() {
           <SearchBar />
           <div onClick={() => router.push(`/cart`)}>
             <FiShoppingCart />
-            {/* {state.totalQuantity} */}
-            {cart}
+            {state.totalQuantity}
           </div>
           <div onClick={() => router.push(`/account/login`)}>
             <FiUser />

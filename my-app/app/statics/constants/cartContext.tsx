@@ -3,16 +3,17 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   useReducer,
-  ReactNode,
 } from "react";
+import { StaticImageData } from "next/image";
 
 type CartItems = {
   name: string;
   price: number;
   quantity: number;
-  thumbnail: string;
+  thumbnail: string | StaticImageData;
 };
 
 type CartState = {
@@ -33,16 +34,61 @@ const CartContext = createContext<{
   dispatch: () => {},
 });
 
-export default function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState(0);
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
+  function reducer(
+    state: CartState,
+    action: { type: string; payload: CartItems; fetchData?: CartState }
+  ) {
+    const filteredIndex = state.cartItems.findIndex(
+      (element) => element.name === action.payload.name
+    );
+    switch (action.type) {
+      case "add":
+        if (filteredIndex > -1) {
+          const updatedItems = [...state.cartItems];
+          updatedItems[filteredIndex] = {
+            name: action.payload.name,
+            price: action.payload.price,
+            quantity:
+              state.cartItems[filteredIndex].quantity + action.payload.quantity,
+            thumbnail: action.payload.thumbnail,
+          };
+          return {
+            totalQuantity: state.totalQuantity + action.payload.quantity,
+            totalPrice:
+              state.totalPrice + action.payload.price * action.payload.quantity,
+            cartItems: updatedItems,
+          };
+        } else {
+          return {
+            totalQuantity: state.totalQuantity + action.payload.quantity,
+            totalPrice:
+              state.totalPrice + action.payload.price * action.payload.quantity,
+            cartItems: [...state.cartItems, action.payload],
+          };
+        }
+      default:
+        throw new Error("Unsupported action type:");
+    }
+  }
 
-  return (
-    // <CartContext.Provider value={{ cart, setCart }}>
-    //   {children}
-    // </CartContext.Provider>
-    <></>
+  const [state, dispatch] = useReducer(
+    reducer,
+    // typeof window !== "undefined" && localStorage.getItem("myCat") !== null
+    //   ? JSON.parse(localStorage.getItem("myCat")!)
+    //   :
+    {
+      totalQuantity: 0,
+      totalPrice: 0,
+      cartItems: [],
+    }
   );
-}
+  return (
+    <CartContext.Provider value={{ state, dispatch }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
 
 export const useCartContext = () => {
   return useContext(CartContext);

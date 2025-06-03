@@ -24,9 +24,9 @@ export default function ProductDetailsPage() {
       Product | null | undefined
     >(null);
     const [count, setCount] = useState<number>(1);
-    const { cart, setCart } = useCartContext();
     const searchParams = useSearchParams();
     const productID = searchParams.get("id");
+    const { dispatch } = useCartContext();
 
     const fetchProductDetails = useCallback(async () => {
       const response = await interceptFetchData<Product[]>(productList);
@@ -108,7 +108,20 @@ export default function ProductDetailsPage() {
                     +
                   </div>
                 </div>
-                <Button color="dark" handle={() => setCart(cart + count)}>
+                <Button
+                  color="dark"
+                  handle={() =>
+                    dispatch({
+                      type: "add",
+                      payload: {
+                        name: productDetails.title,
+                        price: productDetails.subtitle,
+                        quantity: count,
+                        thumbnail: productDetails.img[0],
+                      },
+                    })
+                  }
+                >
                   ADD TO CART
                 </Button>
               </div>
