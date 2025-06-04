@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useReducer,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 import { StaticImageData } from "next/image";
 
 type CartItems = {
@@ -65,6 +59,33 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             totalPrice:
               state.totalPrice + action.payload.price * action.payload.quantity,
             cartItems: [...state.cartItems, action.payload],
+          };
+        }
+      case "remove":
+        if (action.payload.quantity != -1) {
+          const updatedItems = [...state.cartItems];
+          updatedItems[filteredIndex] = {
+            name: action.payload.name,
+            price: action.payload.price,
+            quantity: state.cartItems[filteredIndex].quantity - 1,
+            thumbnail: action.payload.thumbnail,
+          };
+          return {
+            totalQuantity: state.totalQuantity - 1,
+            totalPrice:
+              state.totalPrice - action.payload.price * action.payload.quantity,
+            cartItems: updatedItems,
+          };
+        } else {
+          const updatedItems = [...state.cartItems];
+          updatedItems.splice(filteredIndex, 1);
+          return {
+            totalQuantity:
+              state.totalQuantity - state.cartItems[filteredIndex].quantity,
+            totalPrice:
+              state.totalPrice -
+              action.payload.price * state.cartItems[filteredIndex].quantity,
+            cartItems: updatedItems,
           };
         }
       default:
