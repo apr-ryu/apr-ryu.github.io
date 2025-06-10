@@ -1,6 +1,11 @@
 "use client";
-
-import { createContext, useContext, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useReducer,
+} from "react";
 import { StaticImageData } from "next/image";
 
 type CartItems = {
@@ -88,6 +93,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             cartItems: updatedItems,
           };
         }
+      case "fetch":
+        return {
+          totalQuantity: action.fetchData!.totalQuantity,
+          totalPrice: action.fetchData!.totalPrice,
+          cartItems: action.fetchData!.cartItems,
+        };
       default:
         throw new Error("Unsupported action type:");
     }
@@ -104,6 +115,32 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       cartItems: [],
     }
   );
+
+  const [rendered, setRendered] = useState<boolean>(false);
+
+  useEffect(() => {
+    setRendered(true);
+    if (typeof window !== undefined && localStorage.getItem("myCat") !== null) {
+      const value = JSON.parse(localStorage.getItem("myCat")!);
+      dispatch({
+        type: "fetch",
+        payload: {
+          name: "",
+          price: 0,
+          quantity: 0,
+          thumbnail: "str",
+        },
+        fetchData: value,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (rendered) {
+      localStorage.setItem("myCat", JSON.stringify(state));
+    }
+  }, [state]);
+
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}
